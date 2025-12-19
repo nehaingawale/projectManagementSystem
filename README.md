@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Project Management System (Spring Boot)
 
 This is a Spring Boot REST API project built as part of fresher training.
@@ -33,3 +34,6 @@ The system manages Projects, Teams, Members, and basic time tracking.
 - GET `/api/members`
 - POST `/api/members`
  
+=======
+# projectManagementSystem
+>>>>>>> 1f8f6c4fbf686f2ed486f1b080007f48088cb68b
