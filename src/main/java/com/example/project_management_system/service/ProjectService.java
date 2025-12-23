@@ -1,6 +1,7 @@
 package com.example.project_management_system.service;
 
 import com.example.project_management_system.model.Project;
+import com.example.project_management_system.repository.ProjectRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -12,22 +13,19 @@ import java.util.concurrent.atomic.AtomicLong;
 
 @Service //
 public class ProjectService {
-    private final Map<Long, Project> store = new ConcurrentHashMap<>();
-    private final AtomicLong seq = new AtomicLong(1); //AtomicLong thread safe id generator
 
-    public List<Project> findAll(){
-        return new ArrayList<>(store.values());
+    private final ProjectRepository projectRepository;
+
+    public ProjectService(ProjectRepository projectRepository){
+        this.projectRepository = projectRepository;
     }
 
-    public Optional<Project> findById(Long id)
-    {
-        return Optional.ofNullable(store.get(id));
+    public List<Project> getAllProjects() {
+        return projectRepository.findAll();
     }
 
-    public Project create(Project project){
-        long id = (seq.getAndIncrement());
-        project.setId(id);
-        store.put(id, project);
-        return project;
+    public Project createProject(Project project) {
+        return projectRepository.save(project);
     }
+
 }
